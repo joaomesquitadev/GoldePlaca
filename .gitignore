@@ -1,0 +1,34 @@
+# Saída do build (gerada por tools/prepare-deploy.js)
+deploy/
+
+# Dependências e logs
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Variáveis de ambiente e segredos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Netlify
+.netlify/
+
+# Configuração local do Claude Code
+.claude/settings.local.json
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Temporários
+*.log
+*.tmp

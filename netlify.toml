@@ -1,0 +1,5 @@
+# Golaço é um site estático de um arquivo só (áudio e imagens já vão dentro do index.html).
+# O comando abaixo monta a pasta "deploy" com só o necessário e põe o endereço do site nas imagens de compartilhamento.
+[build]
+  command = "node tools/prepare-deploy.js"
+  publish = "deploy"

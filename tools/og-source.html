@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<!-- Fonte da imagem de compartilhamento (assets/og-image.jpg, 1200x630): uma partida de verdade, com o placar do jogo.
+     Com o jogo rodando em http://localhost:8765/, gere com:
+     msedge --headless --screenshot=assets/og-image.png --window-size=1200,630 --virtual-time-budget=9000 http://localhost:8765/tools/og-source.html
+     e converta o PNG em JPG. -->
+<style>html,body{margin:0;background:#000;overflow:hidden}iframe{border:0;width:1200px;height:630px;display:block}</style>
+<iframe id="f"></iframe>
+<script>
+const f = document.getElementById('f');
+fetch('/index.html?og=' + Date.now()).then(r => r.text()).then(html => {
+  const i = html.lastIndexOf('})();');
+  html = html.slice(0, i) + 'window.__og = {beginMatch, get g() { return g; }};\n' + html.slice(i);   // só aqui: dá acesso à partida para a captura
+  const d = f.contentDocument; d.open(); d.write(html); d.close();
+  f.addEventListener('load', () => {});
+  setTimeout(() => {
+    const w = f.contentWindow, doc = f.contentDocument;
+    w.__og.beginMatch(undefined, 0, 1, 180, 1.4);
+    const st = doc.createElement('style');
+    st.textContent = `
+      #hint,#hintMini,#tools,#chat,#audioBtn,#touch,#volPanel{display:none!important}
+      .og{position:fixed;z-index:9;left:50%;bottom:16px;transform:translateX(-50%);display:flex;align-items:center;gap:18px;padding:12px 30px 12px 16px;border:1px solid rgba(161,254,160,.55);border-radius:100px;background:rgba(0,0,0,.72);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;font-family:Outfit,system-ui,sans-serif;box-shadow:0 18px 40px -16px rgba(0,0,0,.9)}
+      .og img{width:56px;height:56px;display:block}
+      .og b{display:block;font:900 40px/1 Outfit,system-ui,sans-serif;letter-spacing:-.04em;word-spacing:.1em}
+      .og b i{font-style:normal;color:#a1fea0}
+      .og span{display:block;margin-top:5px;font:400 17px/1 Outfit,system-ui,sans-serif;letter-spacing:.04em;color:rgba(255,255,255,.78)}`;
+    doc.head.appendChild(st);
+    const ic = doc.querySelector('link[rel=icon][type="image/svg+xml"]'), src = ic && ic.href;
+    const box = doc.createElement('div'); box.className = 'og';
+    box.innerHTML = `${src ? `<img alt="" src="${src}">` : ''}<div><b>Gol de <i>Placa</i></b><span>Futebol online com os amigos</span></div>`;
+    doc.body.appendChild(box);
+    const g = w.__og.g; g.score = [2, 1]; g.time = 180 - 74;
+  }, 600);
+});
+</script>
