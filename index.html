@@ -526,7 +526,7 @@ select option:checked{background:#a1fea0;color:#000}
   <button class="icon-btn" id="btnChat" title="Chat" aria-label="Abrir o chat" hidden><svg viewBox="0 0 24 24"><path d="M5 6h14v9H10l-4 3v-3H5z"/></svg></button>
   <button class="icon-btn" id="btnMenu" title="Menu (M)" aria-label="Ir para o Menu"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7M6 10v10h12V10"/></svg></button>
 </div>
-<div id="hint" hidden><span><kbd>WASD</kbd><kbd>Setas</kbd> Mover</span><span><kbd>X</kbd><kbd>Espaço</kbd> Chutar</span><span id="hintPause"><kbd>P</kbd> Pausa</span><span><kbd>M</kbd> Menu</span><span><kbd>C</kbd> Ocultar Comandos</span></div>
+<div id="hint" hidden><span><kbd>WASD</kbd><kbd>Setas</kbd> Mover</span><span><kbd>X</kbd><kbd>Espaço</kbd><kbd>Shift</kbd> Chutar</span><span id="hintPause"><kbd>P</kbd> Pausa</span><span id="hintChat"><kbd>Enter</kbd> Chat</span><span><kbd>M</kbd><kbd>Esc</kbd> Menu</span><span><kbd>C</kbd> Ocultar Comandos</span></div>
 <button id="hintMini" type="button" hidden aria-label="Mostrar Comandos"><kbd>C</kbd> Mostrar Comandos</button>
 <div id="goal" hidden role="status" aria-live="assertive">
   <i class="goal-sweep" aria-hidden="true"></i>
@@ -2391,6 +2391,7 @@ $('hintMini').onclick = hintShow;
 function showHud(on) {
   ['board', 'tools', 'hint'].forEach(id => $(id).hidden = !on); $('audioBtn').hidden = on;
   $('hintPause').hidden = !!(g && g.net) || !!ui.net;           // online não há pausa
+  $('hintChat').hidden = !ui.net;                               // chat só online
   if (on) hintShow(); else { hintHide(); $('hintMini').hidden = true; }
   $('touch').hidden = !(on && touchMode); document.body.classList.toggle('playing', on);
   touchIn.dx = touchIn.dy = 0; touchIn.k = false; $('stickKnob').style.transform = ''; $('kickBtn').classList.remove('on');
