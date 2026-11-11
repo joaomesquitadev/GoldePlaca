@@ -1,17 +1,19 @@
 # Gol de Placa
 
-Jogo de futebol de navegador, visto de cima e inspirado na mecânica do HaxBall, com clubes brasileiros da Série A 2026. Escolha seu clube, crie ou entre numa sala online com amigos e jogue partidas rápidas de 1x1 a 3x3.
+Jogo de futebol de navegador, visto de cima e inspirado na mecânica do HaxBall, com 13 clubes brasileiros. Escolha seu clube, jogue contra bots ou crie uma sala online e chame os amigos pelo código, em partidas de 1x1 a 3x3.
 
 > Projeto independente, sem vínculo com o HaxBall. A física e todo o código foram escritos do zero.
 
 ## Recursos
 
-- 13 clubes da Série A 2026, cada um com seu estádio desenhado proceduralmente em canvas
-- Salas online estilo HaxBall: apelido, nome da sala, senha opcional, até 10 pessoas (3x3 no máximo, o resto assiste) e código de 5 caracteres para entrar
-- Multiplayer via WebRTC (PeerJS): o dono da sala roda a simulação e os convidados controlam um jogador cada
-- Permissões de dono e admins (trocar lados, escolher clubes, expulsar, mudar o código da sala)
+- 13 clubes, cada um com seu estádio desenhado em canvas
+- Partida rápida contra bots, com formato (1x1, 2x2 ou 3x3), duração e dificuldade configuráveis
+- Salas online: apelido, nome da sala, senha opcional, até 10 pessoas e código de 5 caracteres para entrar (quem passa do formato da partida assiste)
+- Multiplayer ponto a ponto via WebRTC (PeerJS): o anfitrião roda a simulação e cada convidado controla um jogador
+- Anfitrião e administradores configuram a sala: clube, estádio, formato, bots, duração, dificuldade e troca de lados
 - Regras de saída de bola, gol de ouro no empate, pausa, revanche, assistências, gols contra e Golaço
-- Chat na sala e na partida
+- Placar de transmissão com relógio simulado de 90 minutos
+- Chat na sala e durante a partida
 - Controles de toque para celular (analógico + botão de chute)
 - Interface em português do Brasil
 
@@ -20,34 +22,35 @@ Jogo de futebol de navegador, visto de cima e inspirado na mecânica do HaxBall,
 | Ação | Teclado |
 |---|---|
 | Mover | WASD ou setas |
-| Chutar | X ou Espaço |
-| Pausar | P (online: só dono e admins) |
+| Chutar | X, Espaço ou Shift |
+| Pausar | P (online: só anfitrião e administradores) |
 | Menu da partida | M ou Esc |
-| Chat | Enter |
+| Dicas na tela | C |
+| Chat (online) | Enter |
 
 No celular, vire o aparelho na horizontal: analógico à esquerda, botão de chute à direita.
 
-## Stack
+## Tecnologias
 
-HTML, CSS e JavaScript puros em um único arquivo (`index.html`), sem framework e sem etapa de build para desenvolver. Áudio e imagens dos escudos já vão embutidos no arquivo.
+HTML, CSS e JavaScript puros em um único arquivo (`index.html`), sem framework. A biblioteca PeerJS, o áudio e os escudos já vão embutidos no arquivo.
 
 ## Deploy
 
-O site é publicado na Netlify. O comando de build monta a pasta `deploy/` só com o necessário e ajusta o endereço do site nas imagens de compartilhamento:
+O site é publicado na Netlify. O build monta a pasta `deploy/` só com o necessário e coloca o endereço do site nas imagens de compartilhamento:
 
 ```bash
 node tools/prepare-deploy.js
 ```
 
-A configuração está em `netlify.toml`.
+A configuração está em `netlify.toml`. Um workflow do GitHub Actions registra cada deploy na aba Deployments do repositório.
 
 ## Estrutura
 
 ```
-index.html      jogo completo (código, áudio e escudos embutidos)
-assets/         ícones, manifest, imagem de compartilhamento
+index.html      jogo completo (código, PeerJS, áudio e escudos embutidos)
+assets/         ícones, manifest, robots, headers e imagem de compartilhamento
 audio/          sons de gol e música do menu (fontes)
-tools/          scripts de build (embed de áudio, deploy, og-image)
+tools/          scripts de build (embed-audio, prepare-deploy, og-source)
 netlify.toml    configuração de deploy
 .github/        workflow que registra deployments
 CREDITS.md      créditos e licenças dos escudos e áudios
