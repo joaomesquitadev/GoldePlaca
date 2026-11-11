@@ -31,14 +31,6 @@ No celular, vire o aparelho na horizontal: analógico à esquerda, botão de chu
 
 HTML, CSS e JavaScript puros em um único arquivo (`index.html`), sem framework e sem etapa de build para desenvolver. Áudio e imagens dos escudos já vão embutidos no arquivo.
 
-## Rodando localmente
-
-Basta abrir o `index.html` no navegador, ou servir a pasta:
-
-```bash
-npx serve .
-```
-
 ## Deploy
 
 O site é publicado na Netlify. O comando de build monta a pasta `deploy/` só com o necessário e ajusta o endereço do site nas imagens de compartilhamento:
@@ -57,7 +49,6 @@ assets/         ícones, manifest, imagem de compartilhamento
 audio/          sons de gol e música do menu (fontes)
 tools/          scripts de build (embed de áudio, deploy, og-image)
 netlify.toml    configuração de deploy
-.github/        workflow que registra deployments
 CREDITS.md      créditos e licenças dos escudos e áudios
 ```
 
