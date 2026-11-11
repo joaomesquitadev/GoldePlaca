@@ -49,6 +49,7 @@ assets/         ícones, manifest, imagem de compartilhamento
 audio/          sons de gol e música do menu (fontes)
 tools/          scripts de build (embed de áudio, deploy, og-image)
 netlify.toml    configuração de deploy
+.github/        workflow que registra deployments
 CREDITS.md      créditos e licenças dos escudos e áudios
 ```
 
