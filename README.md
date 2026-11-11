@@ -36,13 +36,13 @@ HTML, CSS e JavaScript puros em um único arquivo (`index.html`), sem framework.
 
 ## Deploy
 
-O site é publicado na Netlify. O build monta a pasta `deploy/` só com o necessário e coloca o endereço do site nas imagens de compartilhamento:
+O site é publicado na Netlify, que roda o build sozinha a cada push (`netlify.toml`). O script monta a pasta `deploy/` só com o necessário e troca `{{SITE}}` pelo endereço do site nas tags de compartilhamento do `index.html` (canonical, `og:url`, `og:image`), já que WhatsApp, Discord e Telegram exigem endereço completo. Para gerar localmente, passe o endereço:
 
 ```bash
-node tools/prepare-deploy.js
+node tools/prepare-deploy.js https://goldeplaca.fun
 ```
 
-A configuração está em `netlify.toml`. Um workflow do GitHub Actions registra cada deploy na aba Deployments do repositório.
+Um workflow do GitHub Actions registra cada deploy na aba Deployments do repositório.
 
 ## Estrutura
 
