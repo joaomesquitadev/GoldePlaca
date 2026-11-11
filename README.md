@@ -23,7 +23,7 @@ Jogo de futebol de navegador, visto de cima e inspirado na mecânica do HaxBall,
 |---|---|
 | Mover | WASD ou setas |
 | Chutar | X, Espaço ou Shift |
-| Pausar | P (online: só anfitrião e administradores) |
+| Pausar | P (só contra bots; online a partida segue) |
 | Menu da partida | M ou Esc |
 | Dicas na tela | C |
 | Chat (online) | Enter |
