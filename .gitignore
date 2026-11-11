@@ -32,3 +32,9 @@ desktop.ini
 # Temporários
 *.log
 *.tmp
+
+# Claude Code
+.claude/
+
+# Impeccable
+.impeccable/

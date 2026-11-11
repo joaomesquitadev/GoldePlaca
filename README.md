@@ -56,8 +56,8 @@ index.html      jogo completo (código, áudio e escudos embutidos)
 assets/         ícones, manifest, imagem de compartilhamento
 audio/          sons de gol e música do menu (fontes)
 tools/          scripts de build (embed de áudio, deploy, og-image)
-PRODUCT.md      visão de produto
-DESIGN.md       sistema de design
+netlify.toml    configuração de deploy
+.github/        workflow que registra deployments
 CREDITS.md      créditos e licenças dos escudos e áudios
 ```
 
